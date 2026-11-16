@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Luz do Saber</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <aside class="menu-lateral">
+        <div class="logo">
+            <div class="logo-icone">✦</div>
+            <h2>Luz do Saber</h2>
+            <p>Biblioteca Escolar</p>
+        </div>
+
+        <nav>
+            <a href="#inicio">⌂ &nbsp; Início</a>
+            <a href="#livros">▤ &nbsp; Livros</a>
+            <a href="#usuarios">♙ &nbsp; Usuários</a>
+            <a href="#emprestimos">⇄ &nbsp; Empréstimos</a>
+        </nav>
+
+        <div class="menu-rodape">
+            <p>Conhecimento que transforma.</p>
+            <span>Biblioteca Luz do Saber</span>
+        </div>
+    </aside>
+
+    <main class="conteudo">
+
+        <header class="topo">
+            <span>SISTEMA DE GESTÃO ESCOLAR</span>
+            <div class="topo-direita">✦ Biblioteca Digital</div>
+        </header>
+
+        <section id="inicio" class="apresentacao">
+            <div class="apresentacao-texto">
+                <span class="etiqueta">✦ BEM-VINDO À BIBLIOTECA</span>
+                <h1>Um universo de <em>conhecimento</em> começa aqui.</h1>
+                <p>Organize livros, usuários e empréstimos em um só lugar.</p>
+                <a href="#livros" class="botao-principal">Explorar acervo →</a>
+            </div>
+            <div class="apresentacao-arte">📚</div>
+        </section>
+
+        <div class="titulo-secao">
+            <span>GERENCIAMENTO</span>
+            <h2>Seu espaço de leitura</h2>
+            <p>Gerencie as informações da biblioteca escolar.</p>
+        </div>
+
+        <section id="livros" class="secao">
+            <div class="cabecalho-secao">
+                <div>
+                    <span class="numero-secao">01 / ACERVO</span>
+                    <h2>Gerenciar Livros</h2>
+                </div>
+                <span class="icone-secao">📖</span>
+            </div>
+
+            <div class="painel">
+                <h3>Cadastro de livros</h3>
+
+                <form id="form-livros">
+                    <input type="hidden" id="livro-id">
+
+                    <div class="campos">
+                        <input type="text" id="titulo" placeholder="Título do livro" required>
+                        <input type="text" id="autor" placeholder="Autor" required>
+                        <input type="text" id="isbn" placeholder="ISBN" required>
+                        <input type="text" id="genero" placeholder="Gênero" required>
+                        <input type="number" id="quantidade" placeholder="Quantidade" min="0" required>
+                        <input type="number" id="disponiveis" placeholder="Disponíveis" min="0" required>
+                    </div>
+
+                    <button type="submit">Salvar livro</button>
+                </form>
+
+                <h3>Livros cadastrados</h3>
+                <div class="tabela-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Título</th>
+                                <th>Autor</th>
+                                <th>ISBN</th>
+                                <th>Gênero</th>
+                                <th>Qtd.</th>
+                                <th>Disponíveis</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-livros"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="usuarios" class="secao">
+            <div class="cabecalho-secao">
+                <div>
+                    <span class="numero-secao">02 / PESSOAS</span>
+                    <h2>Gerenciar Usuários</h2>
+                </div>
+                <span class="icone-secao">👤</span>
+            </div>
+
+            <div class="painel">
+                <h3>Cadastro de usuários</h3>
+
+                <form id="form-usuarios">
+                    <input type="hidden" id="usuario-id">
+
+                    <div class="campos">
+                        <input type="text" id="nome" placeholder="Nome completo" required>
+                        <input type="text" id="matricula" placeholder="Matrícula" required>
+                        <input type="text" id="contato" placeholder="Contato" required>
+
+                        <select id="tipo" required>
+                            <option value="">Tipo de usuário</option>
+                            <option value="Aluno">Aluno</option>
+                            <option value="Professor">Professor</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">Salvar usuário</button>
+                </form>
+
+                <h3>Usuários cadastrados</h3>
+                <div class="tabela-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Matrícula</th>
+                                <th>Contato</th>
+                                <th>Tipo</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-usuarios"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="emprestimos" class="secao">
+            <div class="cabecalho-secao">
+                <div>
+                    <span class="numero-secao">03 / CIRCULAÇÃO</span>
+                    <h2>Gerenciar Empréstimos</h2>
+                </div>
+                <span class="icone-secao">📚</span>
+            </div>
+
+            <div class="painel">
+                <h3>Registro de empréstimos</h3>
+
+                <form id="form-emprestimos">
+                    <input type="hidden" id="emprestimo-id">
+
+                    <div class="campos">
+                        <input type="number" id="livro-id-emprestimo" placeholder="ID do livro" required>
+                        <input type="number" id="usuario-id-emprestimo" placeholder="ID do usuário" required>
+
+                        <div class="campo-data">
+                            <label for="data-emprestimo">Data do empréstimo</label>
+                            <input type="date" id="data-emprestimo" required>
+                        </div>
+
+                        <div class="campo-data">
+                            <label for="data-devolucao">Data da devolução</label>
+                            <input type="date" id="data-devolucao">
+                        </div>
+
+                        <select id="status" required>
+                            <option value="Emprestado">Emprestado</option>
+                            <option value="Devolvido">Devolvido</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">Salvar empréstimo</button>
+                </form>
+
+                <h3>Empréstimos registrados</h3>
+                <div class="tabela-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Livro</th>
+                                <th>Usuário</th>
+                                <th>Empréstimo</th>
+                                <th>Devolução</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-emprestimos"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>✦ Biblioteca Luz do Saber</p>
+            <span>Projeto Integrado • DWS • POO • Banco de Dados</span>
+        </footer>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

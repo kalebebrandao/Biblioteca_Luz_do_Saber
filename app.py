@@ -1,5 +1,4 @@
-from flask import Flask, jsonify, request
-
+from flask import Flask, jsonify, request, render_template
 from modelos.livro import Livro
 from banco.livro_dao import LivroDAO
 from modelos.usuario import Usuario
@@ -12,8 +11,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def inicio():
-    return "Biblioteca Luz do Saber"
-
+    return render_template("index.html")
 
 @app.route("/livros", methods=["GET"])
 def listar_livros():
